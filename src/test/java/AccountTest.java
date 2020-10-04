@@ -26,4 +26,13 @@ public class AccountTest {
                 .isEqualTo(new Money(50)
                 );
     }
+
+    @Test
+    void should_withdraw_10_on_my_account_which_there_is_10() {
+        Account account = new Account(new Money(10));
+        assertThat(
+                account.withdraw(new Money(10)))
+                .isEqualTo(new Money(0));
+    }
+
 }
