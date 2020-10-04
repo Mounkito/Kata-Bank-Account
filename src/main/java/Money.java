@@ -13,7 +13,8 @@ public class Money {
     }
 
     public Money subtract(Money money) {
-        return new Money(value - money.value );
+        value -= money.value;
+        return new Money(value);
     }
 
     public boolean isBiggerThan(Money money) {
@@ -31,5 +32,12 @@ public class Money {
     @Override
     public int hashCode() {
         return Objects.hash(value);
+    }
+
+    @Override
+    public String toString() {
+        return "Money{" +
+                "value=" + value +
+                '}';
     }
 }

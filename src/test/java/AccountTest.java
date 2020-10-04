@@ -19,16 +19,18 @@ public class AccountTest {
 
     @Test
     void should_deposits_10_on_my_account() {
+        account.deposits(new Money(10));
         assertThat(
-                account.deposits(new Money(10)))
+                account.getAccountMoney())
                 .isEqualTo(new Money(10)
                 );
     }
 
     @Test
     void should_deposits_50_on_my_account() {
+        account.deposits(new Money(50));
         assertThat(
-                account.deposits(new Money(50)))
+                account.getAccountMoney())
                 .isEqualTo(new Money(50)
                 );
     }
@@ -36,16 +38,18 @@ public class AccountTest {
     @Test
     void should_withdraw_10_on_my_account_which_there_is_10() {
         account = new Account(new Money(10));
+        account.withdraw(new Money(10));
         assertThat(
-                account.withdraw(new Money(10)))
+                account.getAccountMoney())
                 .isEqualTo(new Money(0));
     }
 
     @Test
     void should_withdraw_20_on_my_account_which_there_is_50_and_the_rest_is_30() {
         account = new Account(new Money(50));
+        account.withdraw(new Money(20));
         assertThat(
-                account.withdraw(new Money(20)))
+                account.getAccountMoney())
                 .isEqualTo(new Money(30));
     }
 
@@ -64,6 +68,17 @@ public class AccountTest {
         assertThat(
                 account.getAccountMoney())
                 .isEqualTo(new Money(20)
+                );
+    }
+
+    @Test
+    void should_withdraw_5_twice_on_my_account_with_20() {
+        account = new Account(new Money(20));
+        account.withdraw(new Money(5));
+        account.withdraw(new Money(5));
+        assertThat(
+                account.getAccountMoney())
+                .isEqualTo(new Money(10)
                 );
     }
 
