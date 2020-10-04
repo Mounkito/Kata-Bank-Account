@@ -1,24 +1,29 @@
+import exception.NotEnoughMoneyException;
+
 public class Account {
 
-    Money money;
+    Money accountMoney;
 
     public Account() {
-        this.money = new Money(0);
+        this.accountMoney = new Money(0);
     }
 
     public Account(Money money) {
-        this.money = money;
+        this.accountMoney = money;
     }
 
-    public Money getMoney() {
-        return money;
+    public Money getAccountMoney() {
+        return accountMoney;
     }
 
     public Money deposits(Money money) {
-        return this.money.add(money);
+        return this.accountMoney.add(money);
     }
 
     public Money withdraw(Money money) {
-        return  this.money.subtract(money);
+        if(money.isBiggerThan(this.accountMoney)){
+            throw new NotEnoughMoneyException();
+        }
+        return this.accountMoney.subtract(money);
     }
 }

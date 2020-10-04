@@ -1,3 +1,4 @@
+import exception.NotEnoughMoneyException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.*;
@@ -13,7 +14,7 @@ public class AccountTest {
 
     @Test
     void an_new_account_created_have_0_money(){
-        assertThat(account.getMoney()).isEqualTo(new Money(0));
+        assertThat(account.getAccountMoney()).isEqualTo(new Money(0));
     }
 
     @Test
@@ -46,6 +47,14 @@ public class AccountTest {
         assertThat(
                 account.withdraw(new Money(20)))
                 .isEqualTo(new Money(30));
+    }
+
+    @Test
+    void should_throw_exception_when_withdraw_10_on_my_account_which_there_is_0() {
+        assertThatThrownBy(
+                () -> account.withdraw(new Money(10)))
+                .isInstanceOf(NotEnoughMoneyException.class)
+                .hasMessageContaining("Sorry this Account have not enough money");
     }
 
 }
