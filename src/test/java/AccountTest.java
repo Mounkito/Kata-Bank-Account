@@ -35,4 +35,12 @@ public class AccountTest {
                 .isEqualTo(new Money(0));
     }
 
+    @Test
+    void should_withdraw_20_on_my_account_which_there_is_50_and_the_rest_is_30() {
+        Account account = new Account(new Money(50));
+        assertThat(
+                account.withdraw(new Money(20)))
+                .isEqualTo(new Money(30));
+    }
+
 }

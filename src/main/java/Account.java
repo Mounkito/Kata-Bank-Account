@@ -19,6 +19,6 @@ public class Account {
     }
 
     public Money withdraw(Money money) {
-        return new Money(0);
+        return  this.money.subtract(money);
     }
 }
