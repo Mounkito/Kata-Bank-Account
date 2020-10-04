@@ -1,12 +1,16 @@
 public class Account {
 
-    Money value;
+    Money money;
 
     public Account() {
-        this.value = new Money(0);
+        this.money = new Money(0);
     }
 
-    public Money getValue() {
-        return value;
+    public Money getMoney() {
+        return money;
+    }
+
+    public Money deposits(Money money) {
+        return this.money = this.money.add(money);
     }
 }
