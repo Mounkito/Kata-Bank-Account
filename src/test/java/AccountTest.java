@@ -12,14 +12,18 @@ public class AccountTest {
     @Test
     void should_deposits_10_on_my_account() {
         Account account = new Account();
-        account.deposits(new Money(10));
-        assertThat(account.getMoney()).isEqualTo(new Money(10));
+        assertThat(
+                account.deposits(new Money(10)))
+                .isEqualTo(new Money(10)
+                );
     }
 
     @Test
     void should_deposits_50_on_my_account() {
         Account account = new Account();
-        account.deposits(new Money(50));
-        assertThat(account.getMoney()).isEqualTo(new Money(50));
+        assertThat(
+                account.deposits(new Money(50)))
+                .isEqualTo(new Money(50)
+                );
     }
 }

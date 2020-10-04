@@ -11,6 +11,6 @@ public class Account {
     }
 
     public Money deposits(Money money) {
-        return this.money = this.money.add(money);
+        return this.money.add(money);
     }
 }
