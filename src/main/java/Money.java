@@ -8,7 +8,8 @@ public class Money {
     }
 
     public Money add(Money money) {
-        return new Money(value + money.value );
+        value += money.value;
+        return new Money(value);
     }
 
     public Money subtract(Money money) {

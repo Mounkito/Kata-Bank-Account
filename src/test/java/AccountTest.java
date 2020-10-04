@@ -57,4 +57,14 @@ public class AccountTest {
                 .hasMessageContaining("Sorry this Account have not enough money");
     }
 
+    @Test
+    void should_deposits_10_twice_on_my_account() {
+        account.deposits(new Money(10));
+        account.deposits(new Money(10));
+        assertThat(
+                account.getAccountMoney())
+                .isEqualTo(new Money(20)
+                );
+    }
+
 }
