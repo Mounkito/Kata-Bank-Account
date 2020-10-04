@@ -15,4 +15,11 @@ public class AccountTest {
         account.deposits(new Money(10));
         assertThat(account.getMoney()).isEqualTo(new Money(10));
     }
+
+    @Test
+    void should_deposits_50_on_my_account() {
+        Account account = new Account();
+        account.deposits(new Money(50));
+        assertThat(account.getMoney()).isEqualTo(new Money(50));
+    }
 }

@@ -7,6 +7,10 @@ public class Money {
         value = i;
     }
 
+    public Money add(Money money) {
+        return new Money(value + money.value );
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -18,9 +22,5 @@ public class Money {
     @Override
     public int hashCode() {
         return Objects.hash(value);
-    }
-
-    public Money add(Money money) {
-        return new Money(10);
     }
 }
