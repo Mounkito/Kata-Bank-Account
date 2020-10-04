@@ -26,4 +26,8 @@ public class Account {
         }
         return this.accountMoney.subtract(money);
     }
+
+    public String showHistory() {
+        return "Account";
+    }
 }

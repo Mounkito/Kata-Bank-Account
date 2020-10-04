@@ -82,4 +82,11 @@ public class AccountTest {
                 );
     }
 
+    @Test
+    void should_show_information_of_account_when_there_are_no_operations() {
+        assertThat(
+                account.showHistory())
+                .isEqualTo("Account");
+    }
+
 }
