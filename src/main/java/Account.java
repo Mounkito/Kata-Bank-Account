@@ -27,8 +27,8 @@ public class Account {
         history.add(
                 new DepositStatement(
                         dateService.getDate(),
-                        accountMoney.add(money),
-                        accountMoney)
+                        money,
+                        accountMoney.add(money))
         );
         return accountMoney;
     }
