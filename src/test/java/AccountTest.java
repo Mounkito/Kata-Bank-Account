@@ -128,4 +128,23 @@ public class AccountTest {
                         + newLine
                         + "-- 2020-10-05 : -10 -- balance : 10 --");
     }
+
+    @Test
+    void should_show_information_of_account_with_two_deposit_and_one_withdraw() {
+        account = new Account(() -> LocalDate.of(2020, 9, 6));
+        account.deposits(new Money(100));
+        account.withdraw(new Money(25));
+        account.deposits(new Money(75));
+        String newLine = System.getProperty("line.separator");
+        assertThat(
+                account.showHistory())
+                .isEqualTo("Account"
+                        + newLine
+                        + "-- 2020-09-06 : +100 -- balance : 100 --"
+                        + newLine
+                        + "-- 2020-09-06 : -25 -- balance : 75 --"
+                        + newLine
+                        + "-- 2020-09-06 : +75 -- balance : 150 --"
+                );
+    }
 }
