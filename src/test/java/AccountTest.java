@@ -1,6 +1,9 @@
 import exception.NotEnoughMoneyException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+
 import static org.assertj.core.api.Assertions.*;
 
 public class AccountTest {
@@ -9,7 +12,7 @@ public class AccountTest {
 
     @BeforeEach
     void setup(){
-        account = new Account();
+        account = new Account(() -> LocalDate.of(2020,10,5));
     }
 
     @Test
@@ -37,7 +40,7 @@ public class AccountTest {
 
     @Test
     void should_withdraw_10_on_my_account_which_there_is_10() {
-        account = new Account(new Money(10));
+        account = new Account(() -> LocalDate.of(2020,10,5),new Money(10));
         account.withdraw(new Money(10));
         assertThat(
                 account.getAccountMoney())
@@ -46,7 +49,7 @@ public class AccountTest {
 
     @Test
     void should_withdraw_20_on_my_account_which_there_is_50_and_the_rest_is_30() {
-        account = new Account(new Money(50));
+        account = new Account(() -> LocalDate.of(2020,10,5),new Money(50));
         account.withdraw(new Money(20));
         assertThat(
                 account.getAccountMoney())
@@ -73,7 +76,7 @@ public class AccountTest {
 
     @Test
     void should_withdraw_5_twice_on_my_account_with_20() {
-        account = new Account(new Money(20));
+        account = new Account(() -> LocalDate.of(2020,10,5),new Money(20));
         account.withdraw(new Money(5));
         account.withdraw(new Money(5));
         assertThat(
@@ -88,5 +91,17 @@ public class AccountTest {
                 account.showHistory())
                 .isEqualTo("Account");
     }
+
+    @Test
+    void should_show_information_of_account_when_there_are_one_deposit_operation_of_10() {
+        account.deposits(new Money(10));
+        String newLine = System.getProperty("line.separator");
+        assertThat(
+                account.showHistory())
+                .isEqualTo("Account"
+                        + newLine
+                        + "-- 2020-10-05 : +10 -- balance : 10 --");
+    }
+
 
 }

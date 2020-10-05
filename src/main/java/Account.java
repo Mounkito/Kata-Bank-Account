@@ -3,13 +3,20 @@ import exception.NotEnoughMoneyException;
 public class Account {
 
     Money accountMoney;
+    Statements history;
+    private DateService dateService;
 
-    public Account() {
+    public Account(DateService dateService) {
+        this.dateService = dateService;
         this.accountMoney = new Money(0);
+        this.history = new Statements();
     }
 
-    public Account(Money money) {
+    public Account(DateService dateService , Money money) {
         this.accountMoney = money;
+        this.dateService = dateService;
+        this.history = new Statements();
+
     }
 
     public Money getAccountMoney() {
@@ -17,17 +24,24 @@ public class Account {
     }
 
     public Money deposits(Money money) {
-        return this.accountMoney.add(money);
+        history.add(
+                new DepositStatement(
+                        dateService.getDate(),
+                        accountMoney.add(money),
+                        accountMoney)
+        );
+        return accountMoney;
     }
 
     public Money withdraw(Money money) {
-        if(money.isBiggerThan(this.accountMoney)){
+        if (money.isBiggerThan(this.accountMoney)) {
             throw new NotEnoughMoneyException();
         }
         return this.accountMoney.subtract(money);
     }
 
     public String showHistory() {
-        return "Account";
+        return "Account" +
+                history.show();
     }
 }

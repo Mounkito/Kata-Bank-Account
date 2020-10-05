@@ -34,10 +34,7 @@ public class Money {
         return Objects.hash(value);
     }
 
-    @Override
-    public String toString() {
-        return "Money{" +
-                "value=" + value +
-                '}';
+    public String show() {
+        return String.valueOf(value);
     }
 }
