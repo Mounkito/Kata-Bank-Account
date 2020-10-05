@@ -116,4 +116,16 @@ public class AccountTest {
                         + newLine
                         + "-- 2020-10-05 : +20 -- balance : 30 --");
     }
+
+    @Test
+    void should_show_information_of_account_of_20_when_there_are_one_withdraw_of_10() {
+        account =  new Account(() -> LocalDate.of(2020, 10, 5), new Money(20));
+        account.withdraw(new Money(10));
+        String newLine = System.getProperty("line.separator");
+        assertThat(
+                account.showHistory())
+                .isEqualTo("Account"
+                        + newLine
+                        + "-- 2020-10-05 : -10 -- balance : 10 --");
+    }
 }

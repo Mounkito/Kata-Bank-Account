@@ -37,7 +37,12 @@ public class Account {
         if (money.isBiggerThan(this.accountMoney)) {
             throw new NotEnoughMoneyException();
         }
-        return this.accountMoney.subtract(money);
+        history.add(
+        new WithdrawStatement(
+                dateService.getDate(),
+                money,
+                accountMoney.subtract(money)));
+        return this.accountMoney;
     }
 
     public String showHistory() {

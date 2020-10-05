@@ -1,6 +1,6 @@
 import java.time.LocalDate;
 
-public class DepositStatement extends statement {
+public class DepositStatement extends Statement {
     public DepositStatement(LocalDate date, Money money, Money balance) {
         super(date, money , balance);
     }

@@ -3,20 +3,20 @@ import java.util.List;
 
 public class Statements {
 
-    private List<statement> statements;
+    private List<Statement> Statements;
 
     public Statements() {
-        this.statements = new ArrayList<>();
+        this.Statements = new ArrayList<>();
     }
 
-    public void add(statement statement) {
-        statements.add(statement);
+    public void add(Statement statement) {
+        Statements.add(statement);
     }
 
     public String show() {
         StringBuilder stringBuilder = new StringBuilder();
         String newLine = System.getProperty("line.separator");
-        for (statement statement : statements) {
+        for (Statement statement : Statements) {
             stringBuilder.append(newLine);
             stringBuilder.append(statement.show());
         }
