@@ -1,9 +1,14 @@
+import exception.NegativeMoneyException;
+
 import java.util.Objects;
 
 public class Money {
     private int value;
 
     public Money(int i) {
+        if(i < 0){
+            throw new NegativeMoneyException();
+        }
         value = i;
     }
 
