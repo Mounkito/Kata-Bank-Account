@@ -1,7 +1,9 @@
+package business;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class Statements {
+class Statements {
 
     private List<Statement> Statements;
 

@@ -1,14 +1,16 @@
+package business;
+
 import java.time.LocalDate;
 
 abstract class Statement {
 
     protected LocalDate date;
-    protected Money money;
+    protected Money operationMoney;
     protected Money balance;
 
-    public Statement(LocalDate date, Money money, Money balance) {
+    public Statement(LocalDate date, Money operationMoney, Money balance) {
         this.date = date;
-        this.money = money;
+        this.operationMoney = operationMoney;
         this.balance = balance;
     }
 

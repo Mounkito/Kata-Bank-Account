@@ -1,3 +1,8 @@
+package business;
+
+import business.Account;
+import business.Money;
+import business.WithdrawStatement;
 import exception.NotEnoughMoneyException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,7 +66,7 @@ public class AccountTest {
         assertThatThrownBy(
                 () -> account.withdraw(new Money(10)))
                 .isInstanceOf(NotEnoughMoneyException.class)
-                .hasMessageContaining("Sorry this Account have not enough money");
+                .hasMessageContaining("Sorry this business.Account have not enough money");
     }
 
     @Test
@@ -88,8 +93,8 @@ public class AccountTest {
     @Test
     void should_show_information_of_account_when_there_are_no_operations() {
         assertThat(
-                account.showHistory())
-                .isEqualTo("Account");
+                account.showStatements())
+                .isEqualTo("business.Account");
     }
 
     @Test
@@ -97,8 +102,8 @@ public class AccountTest {
         account.deposits(new Money(10));
         String newLine = System.getProperty("line.separator");
         assertThat(
-                account.showHistory())
-                .isEqualTo("Account"
+                account.showStatements())
+                .isEqualTo("business.Account"
                         + newLine
                         + "-- 2020-10-05 : +10 -- balance : 10 --");
     }
@@ -109,8 +114,8 @@ public class AccountTest {
         account.deposits(new Money(20));
         String newLine = System.getProperty("line.separator");
         assertThat(
-                account.showHistory())
-                .isEqualTo("Account"
+                account.showStatements())
+                .isEqualTo("business.Account"
                         + newLine
                         + "-- 2020-10-05 : +10 -- balance : 10 --"
                         + newLine
@@ -123,8 +128,8 @@ public class AccountTest {
         account.withdraw(new Money(10));
         String newLine = System.getProperty("line.separator");
         assertThat(
-                account.showHistory())
-                .isEqualTo("Account"
+                account.showStatements())
+                .isEqualTo("business.Account"
                         + newLine
                         + "-- 2020-10-05 : -10 -- balance : 10 --");
     }
@@ -137,8 +142,8 @@ public class AccountTest {
         account.deposits(new Money(75));
         String newLine = System.getProperty("line.separator");
         assertThat(
-                account.showHistory())
-                .isEqualTo("Account"
+                account.showStatements())
+                .isEqualTo("business.Account"
                         + newLine
                         + "-- 2020-09-06 : +100 -- balance : 100 --"
                         + newLine

@@ -1,3 +1,5 @@
+package business;
+
 import exception.NegativeMoneyException;
 
 import java.util.Objects;

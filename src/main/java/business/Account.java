@@ -1,21 +1,24 @@
+package business;
+
 import exception.NotEnoughMoneyException;
+import service.DateService;
 
 public class Account {
 
-    Money accountMoney;
-    Statements history;
+    private Money accountMoney;
+    private Statements statements;
     private DateService dateService;
 
     public Account(DateService dateService) {
         this.dateService = dateService;
         this.accountMoney = new Money(0);
-        this.history = new Statements();
+        this.statements = new Statements();
     }
 
     public Account(DateService dateService , Money money) {
         this.accountMoney = money;
         this.dateService = dateService;
-        this.history = new Statements();
+        this.statements = new Statements();
 
     }
 
@@ -24,7 +27,7 @@ public class Account {
     }
 
     public Money deposits(Money money) {
-        history.add(
+        statements.add(
                 new DepositStatement(
                         dateService.getDate(),
                         money,
@@ -34,10 +37,10 @@ public class Account {
     }
 
     public Money withdraw(Money money) {
-        if (money.isBiggerThan(this.accountMoney)) {
+        if (money.isBiggerThan(accountMoney)) {
             throw new NotEnoughMoneyException();
         }
-        history.add(
+        statements.add(
         new WithdrawStatement(
                 dateService.getDate(),
                 money,
@@ -45,8 +48,8 @@ public class Account {
         return this.accountMoney;
     }
 
-    public String showHistory() {
-        return "Account" +
-                history.show();
+    public String showStatements() {
+        return "business.Account" +
+                statements.show();
     }
 }

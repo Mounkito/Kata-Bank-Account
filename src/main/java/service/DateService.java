@@ -1,5 +1,7 @@
+package service;
+
 import java.time.LocalDate;
 
-interface DateService {
+public interface DateService {
     LocalDate getDate();
 }

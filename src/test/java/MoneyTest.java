@@ -1,5 +1,5 @@
+import business.Money;
 import exception.NegativeMoneyException;
-import exception.NotEnoughMoneyException;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
