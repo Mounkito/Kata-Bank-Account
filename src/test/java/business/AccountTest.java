@@ -6,6 +6,8 @@ import business.WithdrawStatement;
 import exception.NotEnoughMoneyException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import service.Printer;
 
 import java.time.LocalDate;
 
@@ -92,9 +94,10 @@ public class AccountTest {
 
     @Test
     void should_show_information_of_account_when_there_are_no_operations() {
-        assertThat(
-                account.showStatements())
-                .isEqualTo("business.Account");
+        Printer printer = Mockito.mock(Printer.class);
+        account = new Account(() -> LocalDate.of(2020, 10, 5), printer);
+        account.showStatements();
+        Mockito.verify(printer).print("business.Account");
     }
 
     @Test
@@ -124,7 +127,7 @@ public class AccountTest {
 
     @Test
     void should_show_information_of_account_of_20_when_there_are_one_withdraw_of_10() {
-        account =  new Account(() -> LocalDate.of(2020, 10, 5), new Money(20));
+        account = new Account(() -> LocalDate.of(2020, 10, 5), new Money(20));
         account.withdraw(new Money(10));
         String newLine = System.getProperty("line.separator");
         assertThat(
