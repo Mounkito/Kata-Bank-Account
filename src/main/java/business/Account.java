@@ -11,23 +11,18 @@ public class Account {
     private Statements statements;
     private DateService dateService;
 
-    public Account(DateService dateService) {
-        this.dateService = dateService;
-        this.accountMoney = new Money(0);
-        this.statements = new Statements();
-    }
-
-    public Account(DateService dateService, Money money) {
-        this.accountMoney = money;
-        this.dateService = dateService;
-        this.statements = new Statements();
-
-    }
-
     public Account(DateService dateService, Printer printer) {
         this.printer = printer;
         this.dateService = dateService;
         this.statements = new Statements();
+        this.accountMoney = new Money(0);
+    }
+
+    public Account(DateService dateService, Money money, Printer printer) {
+        this.printer = printer;
+        this.dateService = dateService;
+        this.statements = new Statements();
+        this.accountMoney = money;
     }
 
     public Money getAccountMoney() {
@@ -56,11 +51,8 @@ public class Account {
         return this.accountMoney;
     }
 
-    public String showStatements() {
-        if (printer != null)
-            printer.print("business.Account");
-        return "business.Account" +
-                statements.show();
+    public void showStatements() {
+            printer.print("Account" + statements.show());
     }
 
 }
